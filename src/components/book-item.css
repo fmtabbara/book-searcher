@@ -1,0 +1,42 @@
+.book {
+  width: 150px;
+  height: 350px;
+  text-align: center;
+  padding: 25px;
+  margin: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.book:hover {
+  cursor: pointer;
+}
+
+.text-container {
+  padding-bottom: 50px;
+  width: 200px;
+  overflow: hidden;
+  margin: 2px;
+}
+
+.text-container h2 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+.text-container > p {
+  color: grey;
+  margin: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.text-container .publisher {
+  font-size: 11px;
+  font-weight: 400;
+}
