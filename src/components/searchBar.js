@@ -36,7 +36,7 @@ class SearchBar extends React.Component {
       queryAPI(this.state.input)
         .then(res => this.setState({ results: res.data.items }))
         .catch(e => console.log(e));
-    }, 500);
+    }, 250);
   };
 
   render() {
