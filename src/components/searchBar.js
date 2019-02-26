@@ -13,8 +13,17 @@ class SearchBar extends React.Component {
   }
 
   onChange = e => {
-    this.setState({ input: e.target.value });
+    if (e.target.value) {
+      this.setState({ input: e.target.value });
+      this.handleSubmit(e);
+    } else {
+      this.clearSelection();
+    }
   };
+
+  clearSelection() {
+    this.setState({ input: '', results: undefined });
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -23,13 +32,11 @@ class SearchBar extends React.Component {
         this.setState({ results: res.data.items })
       );
     }
-    this.setState({ input: '' });
   };
 
   render() {
     return (
       <div>
-        <h2>Search Bar</h2>
         <form onSubmit={this.handleSubmit}>
           <input
             autoFocus
@@ -38,7 +45,6 @@ class SearchBar extends React.Component {
             placeholder="Search for a book.."
             onChange={this.onChange}
           />
-          <button>Search</button>
         </form>
         {this.state.results && <Books booksData={this.state.results} />}
       </div>

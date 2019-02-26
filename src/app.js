@@ -5,9 +5,11 @@ import SearchBar from './components/SearchBar';
 import './styles/styles.css';
 
 const App = () => (
-  <div id="app-wrapper">
-    <h1>This is Book Finder</h1>
-    <SearchBar />
+  <div id="app-container">
+    <div id="top-nav">
+      <h1>Book Locator</h1>
+      <SearchBar />
+    </div>
   </div>
 );
 
