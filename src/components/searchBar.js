@@ -8,30 +8,35 @@ class SearchBar extends React.Component {
 
     this.state = {
       input: '',
-      results: undefined
+      results: undefined,
+      timeout: undefined
     };
   }
 
-  onChange = e => {
-    if (e.target.value) {
-      this.setState({ input: e.target.value });
-      this.handleSubmit(e);
-    } else {
-      this.clearSelection();
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.input !== prevState.input) {
+      this.state.input.length === 0
+        ? this.clearSelection()
+        : this.handleSubmit();
     }
+  }
+
+  onChange = e => {
+    this.setState({ input: e.target.value });
   };
 
   clearSelection() {
-    this.setState({ input: '', results: undefined });
+    this.setState(() => ({ results: undefined }));
   }
 
   handleSubmit = e => {
-    e.preventDefault();
-    if (this.state.input) {
-      queryAPI(this.state.input).then(res =>
-        this.setState({ results: res.data.items })
-      );
-    }
+    e && e.preventDefault();
+    clearTimeout(this.state.timeOut);
+    this.state.timeOut = setTimeout(() => {
+      queryAPI(this.state.input)
+        .then(res => this.setState({ results: res.data.items }))
+        .catch(e => console.log(e));
+    }, 500);
   };
 
   render() {
@@ -42,7 +47,7 @@ class SearchBar extends React.Component {
             autoFocus
             type="text"
             value={this.state.input}
-            placeholder="Search for a book.."
+            placeholder="Search for a book..."
             onChange={this.onChange}
           />
         </form>
