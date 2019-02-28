@@ -22,7 +22,9 @@ const BookItem = ({ bookInfo }) => {
 
   return (
     <div className="book">
-      <div style={imageStyle} />
+      <a href={bookInfo.infoLink} target="_blank">
+        <div style={imageStyle} />
+      </a>
       <div className="text-container">
         <h2>
           {bookData.title.length > 15
