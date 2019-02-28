@@ -3,11 +3,21 @@
   flex-wrap: wrap;
   width: 95%;
   margin: auto;
-  padding-top: 35px;
+  padding-top: 50px;
+  justify-content: space-between;
 }
 
-@media screen and (max-width: 650px) {
+.books-container::after {
+  content: '';
+  flex: 1;
+  justify-content: center;
+}
+
+@media screen and (max-width: 675px) {
   .books-container {
     justify-content: center;
+  }
+  .books-container::after {
+    display: none;
   }
 }
