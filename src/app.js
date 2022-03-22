@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import SearchBar from './components/SearchBar';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { SearchBar } from './components/searchBar'
 
-import './styles/styles.css';
+import './styles/styles.css'
 
 const App = () => (
   <div id="app-container">
@@ -11,7 +11,7 @@ const App = () => (
       <SearchBar />
     </div>
   </div>
-);
+)
 
-const rootElement = document.getElementById('root');
-ReactDOM.render(<App />, rootElement);
+const rootElement = document.getElementById('root')
+ReactDOM.render(<App />, rootElement)

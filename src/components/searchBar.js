@@ -1,43 +1,43 @@
-import React from 'react';
-import queryAPI from '../utils/queryAPI';
-import Books from '../components/Books';
+import React from 'react'
+import queryAPI from '../utils/queryAPI'
+import { Books } from './books'
 
-class SearchBar extends React.Component {
+export class SearchBar extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       input: '',
       results: undefined,
-      timeout: undefined
-    };
+      timeout: undefined,
+    }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.state.input !== prevState.input) {
       this.state.input.length === 0
         ? this.clearSelection()
-        : this.handleSubmit();
+        : this.handleSubmit()
     }
   }
 
-  onChange = e => {
-    this.setState({ input: e.target.value });
-  };
-
-  clearSelection() {
-    this.setState(() => ({ results: undefined }));
+  onChange = (e) => {
+    this.setState({ input: e.target.value })
   }
 
-  handleSubmit = e => {
-    e && e.preventDefault();
-    clearTimeout(this.state.timeOut);
+  clearSelection() {
+    this.setState(() => ({ results: undefined }))
+  }
+
+  handleSubmit = (e) => {
+    e && e.preventDefault()
+    clearTimeout(this.state.timeOut)
     this.state.timeOut = setTimeout(() => {
       queryAPI(this.state.input)
-        .then(res => this.setState({ results: res.data.items }))
-        .catch(e => console.log(e));
-    }, 250);
-  };
+        .then((res) => this.setState({ results: res.data.items }))
+        .catch((e) => console.log(e))
+    }, 250)
+  }
 
   render() {
     return (
@@ -53,8 +53,6 @@ class SearchBar extends React.Component {
         </form>
         {this.state.results && <Books booksData={this.state.results} />}
       </div>
-    );
+    )
   }
 }
-
-export default SearchBar;
